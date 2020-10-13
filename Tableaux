@@ -92,7 +92,24 @@ def no_literales(l):
 	# Input: l, una lista de fórmulas como árboles
 	# Output: None/f, tal que f no es literal
 	return False
-
+def clasificacion(A):
+    if A.label == '-':
+        if A.right.label == '-':
+            return '1ALFA'
+        elif A.right.label == 'O':
+            return '3ALFA'
+        elif A.right.label == '>':
+            return '4ALFA'
+        elif A.right.label == 'Y':
+            return '1BETA'
+    else:
+        if A.label == 'Y':
+            return '2ALFA'
+        elif A.label == 'O':
+            return '2BETA'
+        elif A.label == '>':
+            return '3Beta'
+	    
 def clasifica_y_extiende(f):
 	# clasifica una fórmula como alfa o beta y extiende listaHojas
 	# de acuerdo a la regla respectiva
@@ -117,4 +134,12 @@ def Tableaux(f):
 
 #print(Inorder(complemento('-q')))
 l = [Tree('-',None,Tree('q',None,None)), Tree('-',None,Tree('p',None,None)), Tree('q',None,None), Tree('-',None,Tree('r',None,None))]
-print(par_complementario(l))
+print(par_complementario(l))print(clasificacion(Tree('-',None,Tree('>',Tree('-',None,Tree('1',None,None)),Tree('Y',Tree('-',None,Tree('3',None,None)),Tree('2',None,None))))))
+print(clasificacion(Tree('O',Tree('-',None,Tree('s',None,None)),Tree('Y',Tree('t',None,None),Tree('>',Tree('u',None,None),Tree('v',None,None))))))
+print(clasificacion(Tree('-',None,Tree('O',Tree('>',Tree('m',None,None),Tree('n',None,None)),Tree('-',None,Tree('l',None,None))))))
+print(clasificacion(Tree('-',None,Tree('-',None,Tree('-',None,Tree('O',Tree('p',None,None),Tree('q',None,None)))))))
+print(clasificacion(Tree('-',None,Tree('pq>',None,None))))
+print(clasificacion(Tree('>',Tree('Y',Tree('p',None,None),Tree('>',Tree('p',None,None),Tree('q',None,None))),Tree('q',None,None))))
+print(clasificacion(Tree('Y',Tree('>',Tree('x',None,None),Tree('z',None,None)),Tree('O',Tree('-',None,Tree('w',None,None)),Tree('-',None,Tree('y',None,None))))))
+print(clasificacion(Tree('-',None,Tree('Y',Tree('-',None,Tree('a',None,None)),Tree('-',None,Tree('b',None,None))))))
+
